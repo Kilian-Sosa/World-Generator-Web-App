@@ -2,8 +2,6 @@
 
 In this challenge, we need to create an application that allows generating and storing maps based on user-defined parameters. The maps will be generated using JavaScript and will be displayed in an HTML page. The application should allow specifying the map size, the maximum area that can be occupied, and the number of nature zones, among other parameters. The generated maps will be saved in a database and can be loaded and displayed at any time.
 
-___
-
 ## Form
 
 The HTML page should have a form with the following fields:
@@ -52,12 +50,8 @@ While the limits established in the configuration form are not reached:
 ### 4. Map Visualization
 The generated map should be displayed in the same HTML page using squares to represent the plots. Non-empty plots should show the zone identifier they belong to (a numeric ID) and a background color indicating the type of zone (nature: green, urban: yellow, commercial: orange).
 
-___
-
 ## Database Persistence
 We need to add a new button labeled "Save" that will store the generated maps in a database with an associated ID. Additionally, we should add a basic list showing the IDs of all saved maps. Clicking on an item in the list should load and display that particular map.
-
-___
 
 ## ***Additional Information***
 The generation of the zones should start from a random focus point within the map and can be extended in all directions, including diagonals.
