@@ -1,0 +1,70 @@
+body {
+    background: #33333a;
+    height: 100vh;
+}
+
+h1 {
+    color: #b3b3fe;
+    font-size: 300%;
+    cursor: default;
+    font-weight: 100;
+}
+
+.hovered {
+    color: #fbfbfb;
+    font-weight: 600;
+}
+
+.hovered-adjacent {
+    color: #ccccfa;
+    font-weight: 400;
+}
+
+button {
+    background: black;
+    cursor: pointer;
+    border: none;
+    padding: 16px 32px;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    position: relative;
+    border-radius: 12px;
+}
+
+button::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    background: linear-gradient(45deg, #ff0000, blue, deeppink, blue, #ff0000, blue, deeppink, blue);
+    background-size: 800%;
+    filter: blur(8px);
+    animation: glowing 20s linear infinite;
+}
+
+@keyframes glowing {
+    0% {
+        background-position: 0 0;
+    }
+    50% {
+        background-position: 400% 0;
+    }
+    100% {
+        background-position: 0 0;
+    }
+}
+
+.field {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.field:has(input:required) label::after {
+    content: " *";
+    color: red;
+}
