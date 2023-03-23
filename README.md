@@ -58,8 +58,8 @@ The generation of the zones should start from a random focus point within the ma
 
 ## Examples how it should look like:
 
-![First example](/examples/example1.png "First example")
-![Second example](/examples/example2.png "Second example")
-![Third example](/examples/example3.png "Third example")
+![First example](/examples/example12.png "First example")
+![Second example](/examples/example22.png "Second example")
+![Third example](/examples/example32.png "Third example")
 
 
