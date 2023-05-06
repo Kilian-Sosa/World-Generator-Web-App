@@ -33,9 +33,9 @@
                 </p>
                 <div class="d-flex justify-content-center">
                     <input type="image" class="btn img-responsive" style="border: none" src="images/es.png" width="15%"
-                        onclick="setLanguageCookie('es'); window.modeModal.showModal();">
+                        onclick="setLanguageCookie('es');">
                     <input type="image" class="btn img-responsive" style="border: none" src="images/en.png" width="15%"
-                        onclick="setLanguageCookie('en'); window.modeModal.showModal();">
+                        onclick="setLanguageCookie('en');">
                 </div>
             </dialog>
         </div>

@@ -74,13 +74,17 @@ function redirect(){
 }
 
 function setInitPlots(){
+    let cont = 0;
     for(let i = 0; i < map[0]; i++) 
         mapGenerated[i] = new Array(map[0]).fill(-1);
     for(let i = 1; i <= map[2][0] + map[3][0] + map[4][0]; i++){
         let x = Math.floor(Math.random() * map[0]);
         let y = Math.floor(Math.random() * map[0]);
         if(mapGenerated[x][y] === -1) mapGenerated[x][y] = i;
+        else i--;
+        cont++;
     }
+    return cont;
 }
 
 function occupiedPlots(){
@@ -92,11 +96,12 @@ function occupiedPlots(){
 }
 
 function growPlots(){
+    cont = setInitPlots();
     let naturalCont = 0, urbanCont = 0, commercialCont = 0;
-    for(let k = 0; k < map[1]; k++)
+    while(cont <= map[1])
         for(let x = 0; x < map[0]; x++) {
             for(let y = 0; y < map[0]; y++) {
-                if(mapGenerated[x][y] !== -1 && occupiedPlots() <= map[1]){
+                if(mapGenerated[x][y] !== -1 && cont <= map[1]){
                     plotPerZone[mapGenerated[x][y]]++;
 
                     if((mapGenerated[x][y] > 0 && mapGenerated[x][y] <= map[2][0] + 1) && (plotPerZone[mapGenerated[x][y]] < map[2][1] && naturalCont < map[2][2])) naturalCont++;
@@ -106,30 +111,31 @@ function growPlots(){
                     let direction = Math.floor(Math.random() * 8);
                     switch(direction){
                         case 0: // Up
-                            if(y > 0 && mapGenerated[x][y-1] === -1) mapGenerated[x][y-1] = mapGenerated[x][y];
+                            y > 0 && mapGenerated[x][y-1] === -1 ? mapGenerated[x][y-1] = mapGenerated[x][y] : cont--;
                             break;
                         case 1: // Left
-                            if(x > 0 && mapGenerated[x-1][y] === -1) mapGenerated[x-1][y] = mapGenerated[x][y];
+                            x > 0 && mapGenerated[x-1][y] === -1 ? mapGenerated[x-1][y] = mapGenerated[x][y] : cont--;
                             break;
                         case 2: // Down
-                            if(y < map[0] - 1 && mapGenerated[x][y+1] === -1) mapGenerated[x][y+1] = mapGenerated[x][y];
+                            y < map[0] - 1 && mapGenerated[x][y+1] === -1 ? mapGenerated[x][y+1] = mapGenerated[x][y] : cont--;
                             break;
                         case 3: // Right
-                            if(x < map[0] - 1 && mapGenerated[x+1][y] === -1) mapGenerated[x+1][y] = mapGenerated[x][y];
+                            x < map[0] - 1 && mapGenerated[x+1][y] === -1 ? mapGenerated[x+1][y] = mapGenerated[x][y] : cont--;
                             break;
                         case 4: //Up-Left
-                            if(y > 0 && x > 0 && mapGenerated[x-1][y-1] === -1) mapGenerated[x-1][y-1] = mapGenerated[x][y];
+                            y > 0 && x > 0 && mapGenerated[x-1][y-1] === -1 ? mapGenerated[x-1][y-1] = mapGenerated[x][y] : cont--;
                             break;
                         case 5: //Down-Left
-                            if(y < map[0] - 1 && x > 0 && mapGenerated[x-1][y+1] === -1) mapGenerated[x-1][y+1] = mapGenerated[x][y];
+                            y < map[0] - 1 && x > 0 && mapGenerated[x-1][y+1] === -1 ? mapGenerated[x-1][y+1] = mapGenerated[x][y] : cont--;
                             break;
                         case 6: //Down-Right
-                            if(y < map[0] - 1 && x < map[0] - 1 && mapGenerated[x+1][y+1] === -1) mapGenerated[x+1][y+1] = mapGenerated[x][y];
+                            y < map[0] - 1 && x < map[0] - 1 && mapGenerated[x+1][y+1] === -1 ? mapGenerated[x+1][y+1] = mapGenerated[x][y] : cont--;
                             break;
                         case 7: //Up-Right
-                            if(y > 0 && x < map[0] - 1 && mapGenerated[x+1][y-1] === -1) mapGenerated[x+1][y-1] = mapGenerated[x][y];
+                            y > 0 && x < map[0] - 1 && mapGenerated[x+1][y-1] === -1 ? mapGenerated[x+1][y-1] = mapGenerated[x][y] : cont--;
                             break;
                     }
+                    cont++;
                 } 
             }
         }
@@ -158,7 +164,6 @@ function showMap(){
 }
 
 function generateWorld(){
-    setInitPlots();
     growPlots();
     showMap();
     document.getElementById("waitMessage").style.display = "none";
