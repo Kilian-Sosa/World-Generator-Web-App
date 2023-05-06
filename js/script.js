@@ -67,9 +67,9 @@ function redirect(){
     if(!getElements()) return false;
 
     let url = "?mapSize=" + parameters[0] + "&maxOccArea=" + parameters[1] + 
-        "&nZones=" + (Math.floor((Math.random() * (parameters[3] - (parameters[2] - 1))) + parameters[2]) + 1) + "&nZoneMaxSize=" + parameters[4] + "&nTotalMaxSize=" + parameters[5] + 
-        "&uZones=" + (Math.floor((Math.random() * (parameters[7] - (parameters[6] - 1))) + parameters[6]) + 1) + "&uZoneMaxSize=" + parameters[8] + "&uTotalMaxSize=" + parameters[9] + 
-        "&cZones=" + (Math.floor((Math.random() * (parameters[11] - (parameters[10] - 1))) + parameters[10]) + 1) + "&cZoneMaxSize=" + parameters[12] + "&cTotalMaxSize=" + parameters[13];
+        "&nZones=" + (Math.floor(Math.random() * (parseInt(parameters[3]) - parseInt(parameters[2]) + 1)) + parseInt(parameters[2])) + "&nZoneMaxSize=" + parameters[4] + "&nTotalMaxSize=" + parameters[5] + 
+        "&uZones=" + (Math.floor(Math.random() * (parseInt(parameters[7]) - parseInt(parameters[6]) + 1)) + parseInt(parameters[6])) + "&uZoneMaxSize=" + parameters[8] + "&uTotalMaxSize=" + parameters[9] + 
+        "&cZones=" + (Math.floor(Math.random() * (parseInt(parameters[11]) - parseInt(parameters[10]) + 1)) + parseInt(parameters[10])) + "&cZoneMaxSize=" + parameters[12] + "&cTotalMaxSize=" + parameters[13];
     window.location.href = url;
 }
 
@@ -152,7 +152,7 @@ function showMap(){
         for(let j = 0; j < map[0]; j++){
             let p = document.createElement("p");
             p.innerHTML = mapGenerated[i][j] === -1 ? "&nbsp;&nbsp;&nbsp;": mapGenerated[i][j] < 10 ? mapGenerated[i][j] + "&nbsp;&nbsp;": mapGenerated[i][j] + "&nbsp;";
-            p.style.backgroundColor = mapGenerated[i][j] === -1 ? "#33333a" : mapGenerated[i][j] < map[2][0] + 1 ? "green" : mapGenerated[i][j] < map[2][0] + map[3][0] + 1 ? "yellow" : "orange";
+            p.style.backgroundColor = mapGenerated[i][j] === -1 ? "#33333a" : mapGenerated[i][j] <= map[2][0] ? "green" : mapGenerated[i][j] <= map[2][0] + map[3][0] ? "yellow" : "orange";
             p.classList.add("m-0");
             p.classList.add("p-0");
             p.style.fontSize = "6px";
